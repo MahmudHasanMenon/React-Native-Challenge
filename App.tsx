@@ -15,8 +15,8 @@ import {
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
+import AppNavigator from './src/Navigation/AppNavigator';
 
-import NewsListScreen from './src/Screens/ArticlesScreens/NewsListScreen';
 
 
 function App(): React.JSX.Element {
@@ -27,12 +27,12 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: isDarkMode ? Colors.darker : Colors.lighter }}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <NewsListScreen />
+      <AppNavigator />
     </SafeAreaView>
   );
 }
