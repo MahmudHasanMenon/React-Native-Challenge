@@ -42,7 +42,6 @@ function NewsListScreen() {
     };
 
     const filteredNews = async (query: string) => {
-        setLoading(true);
         const filteredArticles = await fetchFilteredNewsArticles(query);
         setNewsArticles(filteredArticles);
         setLoading(false);
