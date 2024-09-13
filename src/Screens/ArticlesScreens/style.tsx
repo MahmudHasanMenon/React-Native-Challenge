@@ -23,33 +23,12 @@ export const styles = ScaledSheet.create({
         borderRadius: 8,
         backgroundColor: '#f9f9f9',
     },
-
-    card: {
-        flexDirection: 'row',
-        marginBottom: 10,
-        borderRadius: 5,
-        overflow: 'hidden',
-        borderColor: '#ddd',
+    searchInput: {
+        height: 40,
+        borderColor: 'gray',
         borderWidth: 1,
-    },
-    image: {
-        width: 100,
-        height: 100,
-    },
-    imagePlaceholder: {
-        width: 100,
-        height: 100,
-        backgroundColor: '#f0f0f0',
-    },
-    textContainer: {
-        flex: 1,
-        padding: 10,
-    },
-    title: {
-        fontWeight: 'bold',
-        marginBottom: 5,
-    },
-    description: {
-        color: '#555',
+        borderRadius: 10,
+        marginBottom: 10,
+        paddingHorizontal: 8,
     },
 });

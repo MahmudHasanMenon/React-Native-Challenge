@@ -3,13 +3,9 @@ import {
     SafeAreaView,
     FlatList,
     TextInput,
-    StyleSheet,
     Text,
     View,
     ActivityIndicator,
-    Alert,
-    TouchableOpacity,
-    Image,
     Linking,
 } from 'react-native';
 import { fetchNewsArticles } from '../../Services/News/News';
@@ -19,19 +15,27 @@ import { NewsCardComponent } from '../../Component/NewsCardComponent';
 
 function NewsListScreen() {
     const [newsArticles, setNewsArticles] = useState<Article[]>([]);
+    const [searchQuery, setSearchQuery] = useState('latest');
     const [loading, setLoading] = useState<boolean>(true);
 
-    // Fetch the latest news when the app launches
     useEffect(() => {
-        fetchLatestNews('latest');
-    }, []);
+        if (searchQuery === '') {
+            fetchNews('latest');
+        } else {
+            fetchNews(searchQuery);
+        }
+    }, [searchQuery]);
 
-    const fetchLatestNews = async (query: string) => {
+    const fetchNews = async (query: string) => {
         setLoading(true);
         const articles = await fetchNewsArticles(query);
-        console.log('articles:', articles);
         setNewsArticles(articles);
         setLoading(false);
+    };
+
+
+    const handleSearch = (text: string) => {
+        setSearchQuery(text);
     };
 
     const handleArticlePress = (url: string) => {
@@ -41,7 +45,14 @@ function NewsListScreen() {
     return (
         <SafeAreaView style={styles.container}>
 
-
+            <View style={{ marginHorizontal: 20, marginTop: 20 }}>
+                <TextInput
+                    style={styles.searchInput}
+                    placeholder="Search articles"
+                    value={searchQuery}
+                    onChangeText={handleSearch}
+                />
+            </View>
             {loading ? (
                 <ActivityIndicator size="large" color="#0000ff" />
             ) : newsArticles.length > 0 ? (
